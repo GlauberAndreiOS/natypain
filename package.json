@@ -1,0 +1,28 @@
+{
+  "name": "landpage-psicologa",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "homepage": "https://GlauberAndreiOS.github.io/natypain",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build && echo 'nataliapainoliveira.psc.br' > dist/CNAME",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.3.2",
+    "gh-pages": "^6.2.0",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  }
+}
