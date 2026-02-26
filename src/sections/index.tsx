@@ -1,0 +1,8 @@
+export { ApproachSection } from './approach'
+export { ExpertiseSection } from './expertise'
+export { FooterSection } from './footer'
+export { FormationSection } from './formation'
+export { PricesSection } from './prices'
+export { PresentationSection } from './presentation'
+export { TestimonialsSection } from './testimonials'
+export { WelcomeSection } from './welcome'
