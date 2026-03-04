@@ -1,12 +1,60 @@
 const SCROLL_COOLDOWN_MS = 700
 const DELTA_THRESHOLD = 30
 const SCROLL_SYNC_DELAY_MS = 120
+const DEFAULT_SCROLL_DURATION_MS = 650
 const DEFAULT_SELECTOR = '[data-scroll-section]'
+
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+const easeInOutCubic = (progress) =>
+  progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2
+
+const getCenteredTargetTop = (element) => {
+  const rect = element.getBoundingClientRect()
+  const sectionTop = window.scrollY + rect.top
+  const centerOffset = (window.innerHeight - rect.height) / 2
+  return Math.max(0, sectionTop - centerOffset)
+}
+
+function animateWindowScrollTo(targetTop, durationMs = DEFAULT_SCROLL_DURATION_MS) {
+  if (prefersReducedMotion() || durationMs <= 0) {
+    window.scrollTo({ top: targetTop, behavior: 'auto' })
+    return
+  }
+
+  const startTop = window.scrollY
+  const distance = targetTop - startTop
+  if (Math.abs(distance) < 1) return
+
+  const startTime = performance.now()
+  const tick = (now) => {
+    const elapsed = now - startTime
+    const progress = Math.min(elapsed / durationMs, 1)
+    const easedProgress = easeInOutCubic(progress)
+    window.scrollTo({ top: startTop + distance * easedProgress, behavior: 'auto' })
+    if (progress < 1) window.requestAnimationFrame(tick)
+  }
+
+  window.requestAnimationFrame(tick)
+}
+
+export function smoothScrollToElementCentered(element, durationMs = DEFAULT_SCROLL_DURATION_MS) {
+  if (!element) return
+  animateWindowScrollTo(getCenteredTargetTop(element), durationMs)
+}
+
+export function smoothScrollToSectionByHash(hash, durationMs = DEFAULT_SCROLL_DURATION_MS) {
+  if (!hash?.startsWith('#')) return
+  const target = document.querySelector(hash)
+  if (!target) return
+  smoothScrollToElementCentered(target, durationMs)
+}
 
 export function setupSectionScroll({
   selector = DEFAULT_SELECTOR,
   scrollCooldownMs = SCROLL_COOLDOWN_MS,
   deltaThreshold = DELTA_THRESHOLD,
+  scrollDurationMs = DEFAULT_SCROLL_DURATION_MS,
 } = {}) {
   if (window.matchMedia('(pointer: coarse)').matches) return () => {}
 
@@ -22,13 +70,7 @@ export function setupSectionScroll({
     currentSectionIndex = boundedIndex
 
     const targetSection = sections[boundedIndex]
-    const rect = targetSection.getBoundingClientRect()
-    const sectionTop = window.scrollY + rect.top
-    const availableViewport = window.innerHeight
-    const centerOffset = (availableViewport - rect.height) / 2
-    const targetTop = Math.max(0, sectionTop - centerOffset)
-
-    window.scrollTo({ top: targetTop, behavior: 'smooth' })
+    smoothScrollToElementCentered(targetSection, scrollDurationMs)
     lastScrollTime = Date.now()
   }
 

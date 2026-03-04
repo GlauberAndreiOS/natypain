@@ -10,6 +10,9 @@
   --color-text: #2f1c14;
   --color-muted: #6f4a3a;
   --color-border: #debca8;
+  --motion-duration-fast: 180ms;
+  --motion-duration-base: 280ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-theme='dark'] {
@@ -27,4 +30,50 @@ body {
   margin: 0;
   background: var(--color-bg);
   color: var(--color-text);
+  transition:
+    background-color var(--motion-duration-base) var(--motion-ease),
+    color var(--motion-duration-base) var(--motion-ease);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a,
+button,
+[role='button'],
+input,
+select,
+textarea {
+  transition:
+    color var(--motion-duration-fast) var(--motion-ease),
+    background-color var(--motion-duration-fast) var(--motion-ease),
+    border-color var(--motion-duration-fast) var(--motion-ease),
+    box-shadow var(--motion-duration-fast) var(--motion-ease),
+    transform var(--motion-duration-fast) var(--motion-ease),
+    opacity var(--motion-duration-fast) var(--motion-ease);
+}
+
+section,
+article,
+blockquote,
+header,
+footer,
+nav,
+main {
+  transition:
+    background-color var(--motion-duration-base) var(--motion-ease),
+    border-color var(--motion-duration-base) var(--motion-ease),
+    box-shadow var(--motion-duration-base) var(--motion-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

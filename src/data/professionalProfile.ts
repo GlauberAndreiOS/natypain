@@ -1,34 +1,32 @@
 export const academicFormation = [
   'Psicóloga - Bacharelado em Psicologia (Universidade Federal da Grande Dourados - UFGD)',
-  'Pós-graduação multiprofissional em Saúde Materno-Infantil (HU/UFGD)',
+  'Residência multiprofissional em Saúde Materno-Infantil (HU/UFGD)',
   'Pós-graduação em Neuropsicologia',
 ]
 
 export const theoreticalApproach = [
-  'Análise do Comportamento Aplicada (ABA)',
-  'Intervenções baseadas em evidências',
-  'Avaliação funcional do comportamento',
-  'Planejamento de intervenção comportamental individualizado',
+  'Terapia Comportamental Contextual',
+  'Intervenção Individualizada',
 ]
 
 export const assistedAudience = [
   'Crianças típicas e atípicas',
-  'Desenvolvimento infantil',
-  'Transtornos do neurodesenvolvimento',
-  'Orientação parental',
-  'Atendimento materno-infantil',
-  'Avaliação e intervenção precoce',
+  'Mulheres',
+  'Mães',
+  'Famílias',
+  'Adultos com transtornos do neurodesenvolvimento',
+  'Pessoas em busca de diagnósticos',
+  'Pessoas em busca de autoconhecimento',
 ]
 
 export const practiceAreas = [
-  'Transtorno do Espectro Autista (TEA)',
-  'TDAH',
-  'Atrasos no desenvolvimento',
-  'Dificuldades de aprendizagem',
+  'Transtornos do neurodesenvolvimento (TEA, TDAH)',
+  'Transtornos emocionais (Depressão, Ansiedade, Bipolaridade, Borderline)',
+  'Dificuldade de aprendizagem',
   'Regulação emocional',
-  'Habilidades sociais',
-  'Treino de habilidades adaptativas',
-  'Orientação e treinamento de pais',
+  'Treino de habilidades sociais e adaptativas',
+  'Orientação de famílias e escolas',
+  'Avaliação neuropsicológica',
 ]
 
 export const technicalSkills = [

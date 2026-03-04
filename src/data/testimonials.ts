@@ -10,5 +10,9 @@ export const testimonials = [
 	{
 		"name": "L. F.",
 		"text": `A Nat é sempre muito compreensiva e empática, mas não fica só passando a mão na minha cabeça, ela sabe o momento certo de dizer quando estou errada.`
+	},
+	{
+		"name": "A. G.",
+		"text": `Mesmo em um curto período já vi uma melhora muito grande até nos meus sintomas de fibromialgia e aprendi muito sobre mim mesma.`
 	}
 ];

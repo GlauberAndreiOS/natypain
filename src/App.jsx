@@ -12,13 +12,32 @@ import {
 import { SectionHeader } from './components/SectionHeader'
 import { ThemeToggle } from './components/ThemeToggle'
 import { useThemeMode } from './constants/theme'
-import { setupSectionScroll } from './utils/sectionScroll'
+import { setupSectionScroll, smoothScrollToSectionByHash } from './utils/sectionScroll'
 
 export default function App() {
   const { mode, setMode } = useThemeMode()
 
   useEffect(() => {
     return setupSectionScroll()
+  }, [])
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      const target = event.target
+      if (!(target instanceof Element)) return
+
+      const anchor = target.closest('a[href^="#"]')
+      if (!(anchor instanceof HTMLAnchorElement)) return
+
+      const href = anchor.getAttribute('href')
+      if (!href || href === '#') return
+
+      event.preventDefault()
+      smoothScrollToSectionByHash(href)
+    }
+
+    document.addEventListener('click', handleDocumentClick)
+    return () => document.removeEventListener('click', handleDocumentClick)
   }, [])
 
   return (

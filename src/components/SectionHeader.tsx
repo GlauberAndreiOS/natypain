@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { smoothScrollToSectionByHash } from '../utils/sectionScroll'
 
 const sectionLinks = [
   { href: '#inicio', label: 'Início' },
@@ -16,18 +17,7 @@ export function SectionHeader() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   const scrollToSection = (href: string) => {
-    const target = document.querySelector(href)
-    if (!target) return
-
-    const rect = target.getBoundingClientRect()
-    const availableViewport = window.innerHeight
-    const centerOffset = (availableViewport - rect.height) / 2
-    const targetTop = window.scrollY + rect.top - centerOffset
-
-    window.scrollTo({
-      top: Math.max(0, targetTop),
-      behavior: 'smooth',
-    })
+    smoothScrollToSectionByHash(href)
     setActiveHref(href)
   }
 
