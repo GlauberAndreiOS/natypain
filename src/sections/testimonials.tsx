@@ -2,8 +2,8 @@ import { testimonials } from '../data'
 
 export function TestimonialsSection() {
   return (
-    <section className="h-screen text-justify" id="depoimentos" data-scroll-section>
-      <div className="mx-auto flex h-full w-[80vw] flex-col">
+    <section className="h-auto text-justify md:h-screen" id="depoimentos" data-scroll-section>
+      <div className="mx-auto flex w-[80vw] flex-col md:h-full">
         <div className="shrink-0">
           <h2 className="mt-0 mb-4 pt-20 text-[clamp(1.5rem,3vw,2.2rem)] font-bold md:pt-24">Depoimentos</h2>
         </div>
